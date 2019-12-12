@@ -11,7 +11,7 @@ class Line {
     return areX1sEqual && areX2sEqual && areY1sEqual && areY2sEqual;
   }
   toString() {
-    let strObj = "Line is from ";
+    let strObj = "Line: ";
     strObj += `(${this.startPoint.x}, ${this.startPoint.y}) to `;
     strObj += `(${this.endPoint.x}, ${this.endPoint.y})`;
     return strObj;
