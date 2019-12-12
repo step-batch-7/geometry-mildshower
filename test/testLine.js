@@ -14,3 +14,12 @@ describe("#isEqual()", () => {
     assert.notOk(line1.isEqual(line2));
   });
 });
+
+describe("#toString()", function() {
+  it("should give the string representation of the line object", function() {
+    const line = new Line(1, 2, 3, 4);
+    const actualValue = line.toString();
+    const expectedValue = "Line is from (1, 2) to (3, 4)";
+    assert.strictEqual(actualValue, expectedValue);
+  });
+});
