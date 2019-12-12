@@ -1,8 +1,7 @@
 {
   "name": "geometry-mildshower",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Lib for geometry",
   "directories": {
     "test": "test"
   },
@@ -16,6 +15,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "devDependencies": {
+    "mocha": "^6.2.2"
+  },
   "bugs": {
     "url": "https://github.com/step-batch-7/geometry-mildshower/issues"
   },
