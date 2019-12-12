@@ -1,16 +1,18 @@
+const arePointsEqual = function(point1, point2) {
+  const areXsEqual = point1.x === point2.x;
+  const areYsEqual = point1.y === point2.y;
+  return areXsEqual && areYsEqual;
+};
+
 class Line {
   constructor(start, end) {
     [this.start, this.end] = [{ ...start }, { ...end }];
   }
-  isEqual(anotherLine) {
-    const isLineObj = anotherLine instanceof Line;
-    const areX1sEqual = this.start.x == anotherLine.start.x;
-    const areX2sEqual = this.end.x == anotherLine.end.x;
-    const areY1sEqual = this.start.y == anotherLine.start.y;
-    const areY2sEqual = this.end.y == anotherLine.end.y;
-    return (
-      areX1sEqual && areX2sEqual && areY1sEqual && areY2sEqual && isLineObj
-    );
+  isEqual(line) {
+    const isLineObj = line instanceof Line;
+    const areStartsEqual = arePointsEqual(this.start, line.start);
+    const areEndsEqual = arePointsEqual(this.end, line.end);
+    return areStartsEqual && areEndsEqual && isLineObj;
   }
   toString() {
     let strObj = "Line: ";

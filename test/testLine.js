@@ -9,9 +9,15 @@ describe("Line", () => {
       assert.ok(line1.isEqual(line2));
     });
 
-    it("should invalidate if lines of unequal start or end points are given", () => {
+    it("should invalidate if lines of unequal start points are given", () => {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
-      const line2 = new Line({ x: 5, y: 6 }, { x: 7, y: 8 });
+      const line2 = new Line({ x: 5, y: 6 }, { x: 3, y: 4 });
+      assert.notOk(line1.isEqual(line2));
+    });
+
+    it("should invalidate if lines of unequal end points are given", () => {
+      const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const line2 = new Line({ x: 1, y: 2 }, { x: 7, y: 8 });
       assert.notOk(line1.isEqual(line2));
     });
 
