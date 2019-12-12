@@ -1,7 +1,6 @@
 class Line {
-  constructor(x1, y1, x2, y2) {
-    this.start = { x: x1, y: y1 };
-    this.end = { x: x2, y: y2 };
+  constructor(start, end) {
+    [this.start, this.end] = [{ ...start }, { ...end }];
   }
   isEqual(anotherLine) {
     const areX1sEqual = this.start.x == anotherLine.start.x;
