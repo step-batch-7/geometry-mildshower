@@ -100,6 +100,12 @@ describe("Line", () => {
       const line2 = new Line({ x: -2, y: 10 }, { x: -2, y: 10 });
       assert.notOk(line1.isParallelTo(line2));
     });
+
+    it("should validate if two lines are overlapping", function() {
+      const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const line2 = new Line({ x: 0, y: 1 }, { x: 3, y: 4 });
+      assert.ok(line1.isParallelTo(line2));
+    });
   });
 
   describe("#slope", function() {
