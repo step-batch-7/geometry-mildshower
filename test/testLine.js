@@ -6,25 +6,25 @@ describe("Line", () => {
     it("should validate if equal lines are given", () => {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const line2 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
-      assert.ok(line1.isEqual(line2));
+      assert.ok(line1.isEqualTo(line2));
     });
 
     it("should invalidate if lines of unequal start points are given", () => {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const line2 = new Line({ x: 5, y: 6 }, { x: 3, y: 4 });
-      assert.notOk(line1.isEqual(line2));
+      assert.notOk(line1.isEqualTo(line2));
     });
 
     it("should invalidate if lines of unequal end points are given", () => {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const line2 = new Line({ x: 1, y: 2 }, { x: 7, y: 8 });
-      assert.notOk(line1.isEqual(line2));
+      assert.notOk(line1.isEqualTo(line2));
     });
 
     it("should invalidate if a object is given that is not an instance of Line class", () => {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       assert.notOk(
-        line1.isEqual({ start: { x: 1, y: 2 }, end: { x: 3, y: 4 } })
+        line1.isEqualTo({ start: { x: 1, y: 2 }, end: { x: 3, y: 4 } })
       );
     });
   });

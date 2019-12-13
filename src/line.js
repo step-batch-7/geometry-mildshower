@@ -8,7 +8,7 @@ class Line {
   constructor(start, end) {
     [this.start, this.end] = [{ ...start }, { ...end }];
   }
-  isEqual(line) {
+  isEqualTo(line) {
     const isLineObj = line instanceof Line;
     const areStartsEqual = arePointsEqual(this.start, line.start);
     const areEndsEqual = arePointsEqual(this.end, line.end);
