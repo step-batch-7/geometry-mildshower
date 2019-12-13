@@ -28,6 +28,19 @@ class Line {
     const dy = this.start.y - this.end.y;
     return Math.sqrt(dx ** 2 + dy ** 2);
   }
+
+  get slope() {
+    if (this.length == 0) return NaN;
+    const dx = this.start.x - this.end.x;
+    const dy = this.start.y - this.end.y;
+    return dy / dx;
+  }
+
+  // isParallelTo(other) {
+  //   if (!(other instanceof Line)) return false;
+
+  //   return slope(this) === slope(other);
+  // }
 }
 
 module.exports = Line;

@@ -74,4 +74,47 @@ describe("Line", () => {
       assert.deepStrictEqual(actualValue, expectedValue);
     });
   });
+
+  // describe("#isParallelTo()", function() {
+  //   it("should validate if two lines are parallel", function() {
+  //     const line1 = new Line({ x: 1, y: 2 }, { x: 2, y: 3 });
+  //     const line2 = new Line({ x: -2, y: 5 }, { x: -1, y: 6 });
+  //     assert.ok(line1.isParallelTo(line2));
+  //   });
+  // });
+
+  describe("#slope", function() {
+    it("should calculate positive slope if end points of the line are different", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 2, y: 2 });
+      const actualValue = line.slope;
+      const expectedValue = 1;
+      assert.strictEqual(actualValue, expectedValue);
+    });
+
+    it("should calculate negative slope if end points of the line are different", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 0, y: 2 });
+      const actualValue = line.slope;
+      const expectedValue = -1;
+      assert.strictEqual(actualValue, expectedValue);
+    });
+
+    it("should NaN as a number if end points of the line are same", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 1, y: 1 });
+      assert.isNaN(line.slope);
+    });
+
+    it("should give 0 as slope when line is parallel to x-axis", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 2, y: 1 });
+      const actualValue = line.slope;
+      const expectedValue = 0;
+      assert.strictEqual(actualValue, expectedValue);
+    });
+
+    it("should give Infinity as slope when line is parallel to y-axis", function() {
+      const line = new Line({ x: 1, y: 2 }, { x: 1, y: 1 });
+      const actualValue = line.slope;
+      const expectedValue = Infinity;
+      assert.strictEqual(actualValue, expectedValue);
+    });
+  });
 });
