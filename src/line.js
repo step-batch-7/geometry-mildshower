@@ -10,10 +10,10 @@ class Line {
     this.end = { x: end.x, y: end.y };
   }
   isEqualTo(line) {
-    const isLineObj = line instanceof Line;
+    if (!(line instanceof Line)) return false;
     const areStartsEqual = arePointsEqual(this.start, line.start);
     const areEndsEqual = arePointsEqual(this.end, line.end);
-    return areStartsEqual && areEndsEqual && isLineObj;
+    return areStartsEqual && areEndsEqual;
   }
   toString() {
     const start = `(${this.start.x}, ${this.start.y})`;
