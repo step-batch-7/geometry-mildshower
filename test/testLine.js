@@ -75,13 +75,32 @@ describe("Line", () => {
     });
   });
 
-  // describe("#isParallelTo()", function() {
-  //   it("should validate if two lines are parallel", function() {
-  //     const line1 = new Line({ x: 1, y: 2 }, { x: 2, y: 3 });
-  //     const line2 = new Line({ x: -2, y: 5 }, { x: -1, y: 6 });
-  //     assert.ok(line1.isParallelTo(line2));
-  //   });
-  // });
+  describe("#isParallelTo()", function() {
+    it("should validate if two lines are parallel", function() {
+      const line1 = new Line({ x: 1, y: 2 }, { x: 2, y: 3 });
+      const line2 = new Line({ x: -2, y: 5 }, { x: -1, y: 6 });
+      assert.ok(line1.isParallelTo(line2));
+    });
+
+    it("should invalidate if two lines are not parallel", function() {
+      const line1 = new Line({ x: 1, y: 6 }, { x: 2, y: 3 });
+      const line2 = new Line({ x: -2, y: 10 }, { x: -9, y: 6 });
+      assert.notOk(line1.isParallelTo(line2));
+    });
+
+    it("should invalidate if anything other that line is compared with line", function() {
+      const line1 = new Line({ x: 1, y: 6 }, { x: 2, y: 3 });
+      assert.notOk(
+        line1.isParallelTo({ start: { x: -2, y: 5 }, end: { x: -1, y: 6 } })
+      );
+    });
+
+    it("should invalidate if two lines with of length 0 are compared", function() {
+      const line1 = new Line({ x: 1, y: 6 }, { x: 1, y: 6 });
+      const line2 = new Line({ x: -2, y: 10 }, { x: -2, y: 10 });
+      assert.notOk(line1.isParallelTo(line2));
+    });
+  });
 
   describe("#slope", function() {
     it("should calculate positive slope if end points of the line are different", function() {

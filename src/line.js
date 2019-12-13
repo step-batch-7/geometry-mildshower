@@ -36,11 +36,10 @@ class Line {
     return dy / dx;
   }
 
-  // isParallelTo(other) {
-  //   if (!(other instanceof Line)) return false;
-
-  //   return slope(this) === slope(other);
-  // }
+  isParallelTo(other) {
+    if (!(other instanceof Line)) return false;
+    return this.slope === other.slope;
+  }
 }
 
 module.exports = Line;
