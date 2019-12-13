@@ -30,7 +30,6 @@ class Line {
   }
 
   get slope() {
-    if (this.length == 0) return NaN;
     const dx = this.start.x - this.end.x;
     const dy = this.start.y - this.end.y;
     return dy / dx;
