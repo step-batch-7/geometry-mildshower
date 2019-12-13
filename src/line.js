@@ -6,7 +6,8 @@ const arePointsEqual = function(point1, point2) {
 
 class Line {
   constructor(start, end) {
-    [this.start, this.end] = [{ ...start }, { ...end }];
+    this.start = { x: start.x, y: start.y };
+    this.end = { x: end.x, y: end.y };
   }
   isEqualTo(line) {
     const isLineObj = line instanceof Line;
