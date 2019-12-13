@@ -16,10 +16,9 @@ class Line {
     return areStartsEqual && areEndsEqual && isLineObj;
   }
   toString() {
-    let strObj = "Line: ";
-    strObj += `(${this.start.x}, ${this.start.y}) to `;
-    strObj += `(${this.end.x}, ${this.end.y})`;
-    return strObj;
+    const start = `(${this.start.x}, ${this.start.y})`;
+    const end = `(${this.end.x}, ${this.end.y})`;
+    return `Line: ${start} to ${end}`;
   }
 }
 
