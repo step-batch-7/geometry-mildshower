@@ -37,4 +37,41 @@ describe("Line", () => {
       assert.strictEqual(actualValue, expectedValue);
     });
   });
+
+  describe("#length", function() {
+    it("should calculate length for a line whose start and end are not same", function() {
+      const line = new Line({ x: 5, y: 1 }, { x: 2, y: 5 });
+      const actualValue = line.length;
+      const expectedValue = 5;
+      assert.strictEqual(actualValue, expectedValue);
+    });
+
+    it("should give 0 as length for a line whose start and end points are same", function() {
+      const line = new Line({ x: 5, y: 1 }, { x: 5, y: 1 });
+      const actualValue = line.length;
+      const expectedValue = 0;
+      assert.deepStrictEqual(actualValue, expectedValue);
+    });
+
+    it("should give length for a line that has negative co-ordinates as any end point", function() {
+      const line = new Line({ x: -1, y: -2 }, { x: 3, y: 1 });
+      const actualValue = line.length;
+      const expectedValue = 5;
+      assert.deepStrictEqual(actualValue, expectedValue);
+    });
+
+    it("should give length for a line whose both end points are negative", function() {
+      const line = new Line({ x: -1, y: -2 }, { x: -5, y: -5 });
+      const actualValue = line.length;
+      const expectedValue = 5;
+      assert.deepStrictEqual(actualValue, expectedValue);
+    });
+
+    it("should calculate decimal length also", function() {
+      const line = new Line({ x: 1, y: 2 }, { x: 3, y: 11.9 });
+      const actualValue = line.length;
+      const expectedValue = 10.1;
+      assert.deepStrictEqual(actualValue, expectedValue);
+    });
+  });
 });
