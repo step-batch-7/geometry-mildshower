@@ -102,9 +102,21 @@ describe("Line", () => {
       assert.notOk(line1.isParallelTo(line2));
     });
 
-    it("should invalidate for two equal lines", function() {
+    it("should invalidate for two equal line segments", function() {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const line2 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      assert.notOk(line1.isParallelTo(line2));
+    });
+
+    it("should invalidate for two overlapping  lines", function() {
+      const line1 = new Line({ x: 1, y: 2 }, { x: 10, y: 11 });
+      const line2 = new Line({ x: 2, y: 3 }, { x: 3, y: 4 });
+      assert.notOk(line1.isParallelTo(line2));
+    });
+
+    it("should invalidate for two line segments who are part of same line", function() {
+      const line1 = new Line({ x: 6, y: 7 }, { x: 10, y: 11 });
+      const line2 = new Line({ x: 2, y: 3 }, { x: 3, y: 4 });
       assert.notOk(line1.isParallelTo(line2));
     });
   });
