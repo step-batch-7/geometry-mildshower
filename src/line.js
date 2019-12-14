@@ -25,7 +25,7 @@ class Line {
   toString() {
     const start = `(${this.start.x}, ${this.start.y})`;
     const end = `(${this.end.x}, ${this.end.y})`;
-    return `Line: ${start} to ${end}`;
+    return `[Line ${start} to ${end}]`;
   }
 
   get length() {
