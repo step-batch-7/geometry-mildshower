@@ -20,4 +20,18 @@ describe("Point", () => {
       assert.notEqual(actualValue, expectedValue);
     });
   });
+
+  describe("#visit()", function() {
+    it("should give the result of the given function called with x and y of the point", function() {
+      const point = new Point(3, 4);
+      const sum = function(x, y) {
+        assert.strictEqual(x, 3);
+        assert.strictEqual(y, 4);
+        return x + y;
+      };
+      const actualValue = point.visit(sum);
+      const expectedValue = 7;
+      assert.deepStrictEqual(actualValue, expectedValue);
+    });
+  });
 });
