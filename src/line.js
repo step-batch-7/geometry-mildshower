@@ -47,6 +47,7 @@ class Line {
 
   findX(y) {
     if (!isNumInRange([this.start.y, this.end.y], y)) return NaN;
+    if (this.slope == 0) return this.start.x;
     const dy = y - this.start.y;
     return dy / this.slope + this.start.x;
   }
