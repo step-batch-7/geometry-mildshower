@@ -152,9 +152,14 @@ describe("Line", () => {
       assert.strictEqual(actualValue, expectedValue);
     });
 
-    it("should give NaN if given y does not have a corresponding x value on line", function() {
+    it("should give NaN if given y is lesser than the lower limit of the line's y co-ordinate range", function() {
       const line = new Line({ x: -1, y: 3 }, { x: 3, y: -1 });
-      assert.isNaN(line.findX(4));
+      assert.isNaN(line.findX(-2));
+    });
+
+    it("should give NaN if given y is greater than the upper limit of the line's y co-ordinate range", function() {
+      const line = new Line({ x: -1, y: 3 }, { x: 3, y: -1 });
+      assert.isNaN(line.findX(10));
     });
 
     it("should give any valid x value if there are multiple x values available for a given y", function() {
@@ -173,9 +178,14 @@ describe("Line", () => {
       assert.strictEqual(actualValue, expectedValue);
     });
 
-    it("should give NaN if given x does not have a corresponding y value on line", function() {
+    it("should give NaN if given x is lesser than the lower limit of the line's x co-ordinate range", function() {
       const line = new Line({ x: -1, y: 3 }, { x: 3, y: -1 });
-      assert.isNaN(line.findY(4));
+      assert.isNaN(line.findY(-2));
+    });
+
+    it("should give NaN if given x is greater than the upper limit of the line's x co-ordinate range", function() {
+      const line = new Line({ x: -1, y: 3 }, { x: 3, y: -1 });
+      assert.isNaN(line.findY(5));
     });
 
     it("should give any valid y value if there are multiple y values available for a given x", function() {
