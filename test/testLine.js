@@ -142,4 +142,20 @@ describe("Line", () => {
       assert.strictEqual(actualValue, expectedValue);
     });
   });
+
+  describe("#findX()", function() {
+    it("should give x value for the given y if the y value has a corresponding x value on line", function() {
+      const line = new Line({ x: -1, y: 3 }, { x: 3, y: -1 });
+      const actualValue = line.findX(1);
+      const expectedValue = 1;
+      assert.strictEqual(actualValue, expectedValue);
+    });
+
+    it("should give undefined if given y does not have a corresponding x value on line", function() {
+      const line = new Line({ x: -1, y: 3 }, { x: 3, y: -1 });
+      const actualValue = line.findX(4);
+      const expectedValue = undefined;
+      assert.strictEqual(actualValue, expectedValue);
+    });
+  });
 });

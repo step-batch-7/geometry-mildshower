@@ -4,6 +4,11 @@ const arePointsEqual = function(point1, point2) {
   return areXsEqual && areYsEqual;
 };
 
+const isNumInRange = function(range, number) {
+  const [lowerLim, higherLim] = range.sort();
+  return lowerLim <= number && higherLim >= number;
+};
+
 class Line {
   constructor(start, end) {
     this.start = { x: start.x, y: start.y };
@@ -38,6 +43,12 @@ class Line {
   isParallelTo(other) {
     if (!(other instanceof Line)) return false;
     return this.slope === other.slope;
+  }
+
+  findX(y) {
+    if (!isNumInRange([this.start.y, this.end.y], y)) return undefined;
+    const dy = y - this.start.y;
+    return dy / this.slope + this.start.x;
   }
 }
 
