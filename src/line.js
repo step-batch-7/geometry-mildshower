@@ -11,6 +11,13 @@ const isNumInRange = function(range, number) {
   return lowerLim <= number && higherLim >= number;
 };
 
+const areCollinear = function(pointA, pointB, pointC) {
+  const [x1, y1] = [pointA.x, pointA.y];
+  const [x2, y2] = [pointB.x, pointB.y];
+  const [x3, y3] = [pointC.x, pointC.y];
+  return x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2) == 0;
+};
+
 class Line {
   constructor(start, end) {
     this.start = { x: start.x, y: start.y };
@@ -45,9 +52,8 @@ class Line {
   isParallelTo(other) {
     if (!(other instanceof Line)) return false;
     const areSlopesSame = this.slope === other.slope;
-    const yInterceptOfThis = this.start.y - this.start.x * this.slope;
-    const yInterceptOfOther = other.start.y - other.start.x * other.slope;
-    return areSlopesSame && !(yInterceptOfOther === yInterceptOfThis);
+    const areLinesOverLapping = areCollinear(this.start, this.end, other.start);
+    return areSlopesSame && !areLinesOverLapping;
   }
 
   findX(y) {
@@ -65,7 +71,10 @@ class Line {
   }
 
   hasPoint(other) {
-    return other instanceof Point && other.x === this.findX(other.y);
+    return (
+      other instanceof Point &&
+      (other.x === this.findX(other.y) || other.y === this.findY(other.x))
+    );
   }
 
   split() {

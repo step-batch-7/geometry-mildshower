@@ -77,9 +77,21 @@ describe("Line", () => {
   });
 
   describe("#isParallelTo()", function() {
-    it("should validate if two lines are parallel", function() {
+    it("should validate if two inclined lines are parallel", function() {
       const line1 = new Line({ x: 1, y: 2 }, { x: 2, y: 3 });
       const line2 = new Line({ x: -2, y: 5 }, { x: -1, y: 6 });
+      assert.ok(line1.isParallelTo(line2));
+    });
+
+    it("should validate if two vertical lines are parallel", function() {
+      const line1 = new Line({ x: 1, y: 2 }, { x: 1, y: 56 });
+      const line2 = new Line({ x: 2, y: 5 }, { x: 2, y: 6 });
+      assert.ok(line1.isParallelTo(line2));
+    });
+
+    it("should validate if two horizontal lines are parallel", function() {
+      const line1 = new Line({ x: 1, y: 2 }, { x: 2, y: 2 });
+      const line2 = new Line({ x: -19, y: 3 }, { x: -1, y: 3 });
       assert.ok(line1.isParallelTo(line2));
     });
 
@@ -114,9 +126,21 @@ describe("Line", () => {
       assert.notOk(line1.isParallelTo(line2));
     });
 
-    it("should invalidate for two line segments who are part of same line", function() {
+    it("should invalidate for two different line segments who are part of same line", function() {
       const line1 = new Line({ x: 6, y: 7 }, { x: 10, y: 11 });
       const line2 = new Line({ x: 2, y: 3 }, { x: 3, y: 4 });
+      assert.notOk(line1.isParallelTo(line2));
+    });
+
+    it("should invalidate for two different segments of y-axis", function() {
+      const line1 = new Line({ x: 0, y: -10 }, { x: 0, y: 11 });
+      const line2 = new Line({ x: 0, y: 21 }, { x: 0, y: 23 });
+      assert.notOk(line1.isParallelTo(line2));
+    });
+
+    it("should invalidate for two different segments of x-axis", function() {
+      const line1 = new Line({ x: 10, y: 0 }, { x: 21, y: 0 });
+      const line2 = new Line({ x: -30, y: 0 }, { x: 2, y: 0 });
       assert.notOk(line1.isParallelTo(line2));
     });
   });
