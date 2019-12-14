@@ -151,11 +151,9 @@ describe("Line", () => {
       assert.strictEqual(actualValue, expectedValue);
     });
 
-    it("should give undefined if given y does not have a corresponding x value on line", function() {
+    it("should give NaN if given y does not have a corresponding x value on line", function() {
       const line = new Line({ x: -1, y: 3 }, { x: 3, y: -1 });
-      const actualValue = line.findX(4);
-      const expectedValue = undefined;
-      assert.strictEqual(actualValue, expectedValue);
+      assert.isNaN(line.findX(4));
     });
   });
 });
