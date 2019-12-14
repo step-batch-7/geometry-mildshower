@@ -43,7 +43,11 @@ class Line {
   }
 
   isParallelTo(other) {
-    return other instanceof Line && this.slope === other.slope;
+    if (!(other instanceof Line)) return false;
+    const areSlopesSame = this.slope === other.slope;
+    const yInterceptOfThis = this.start.y - this.start.x * this.slope;
+    const yInterceptOfOther = other.start.y - other.start.x * other.slope;
+    return areSlopesSame && !(yInterceptOfOther === yInterceptOfThis);
   }
 
   findX(y) {

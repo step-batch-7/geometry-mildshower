@@ -102,10 +102,10 @@ describe("Line", () => {
       assert.notOk(line1.isParallelTo(line2));
     });
 
-    it("should validate if two lines are overlapping", function() {
+    it("should invalidate for two equal lines", function() {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
-      const line2 = new Line({ x: 0, y: 1 }, { x: 3, y: 4 });
-      assert.ok(line1.isParallelTo(line2));
+      const line2 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      assert.notOk(line1.isParallelTo(line2));
     });
   });
 
