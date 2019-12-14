@@ -198,5 +198,10 @@ describe("Line", () => {
       const point = new Point(10, 4);
       assert.notOk(line.hasPoint(point));
     });
+
+    it("should invalidate if the given object is not a point object", function() {
+      const line = new Line({ x: 1, y: 2 }, { x: 4, y: 5 });
+      assert.notOk(line.hasPoint({ x: 3, y: 4 }));
+    });
   });
 });
