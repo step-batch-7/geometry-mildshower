@@ -53,6 +53,7 @@ class Line {
   }
 
   findY(x) {
+    if (!isNumInRange([this.start.x, this.end.x], x)) return NaN;
     const dx = x - this.start.x;
     return dx * this.slope + this.start.y;
   }

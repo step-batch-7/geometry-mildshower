@@ -171,5 +171,10 @@ describe("Line", () => {
       const expectedValue = 1;
       assert.strictEqual(actualValue, expectedValue);
     });
+
+    it("should give NaN if given x does not have a corresponding y value on line", function() {
+      const line = new Line({ x: -1, y: 3 }, { x: 3, y: -1 });
+      assert.isNaN(line.findY(4));
+    });
   });
 });
