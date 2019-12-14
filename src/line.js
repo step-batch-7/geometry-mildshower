@@ -51,6 +51,11 @@ class Line {
     const dy = y - this.start.y;
     return dy / this.slope + this.start.x;
   }
+
+  findY(x) {
+    const dx = x - this.start.x;
+    return dx * this.slope + this.start.y;
+  }
 }
 
 module.exports = Line;

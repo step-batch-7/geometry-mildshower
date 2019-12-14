@@ -163,4 +163,13 @@ describe("Line", () => {
       assert.strictEqual(actualValue, expectedValue);
     });
   });
+
+  describe("#findY()", function() {
+    it("should give y value for the given x if the x value has a corresponding y value on line", function() {
+      const line = new Line({ x: -1, y: 3 }, { x: 3, y: -1 });
+      const actualValue = line.findY(1);
+      const expectedValue = 1;
+      assert.strictEqual(actualValue, expectedValue);
+    });
+  });
 });
