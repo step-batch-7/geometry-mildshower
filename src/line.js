@@ -7,7 +7,7 @@ const arePointsEqual = function(point1, point2) {
 };
 
 const isNumInRange = function(range, number) {
-  const [lowerLim, higherLim] = range.sort();
+  const [lowerLim, higherLim] = range.sort((num1, num2) => num1 - num2);
   return lowerLim <= number && higherLim >= number;
 };
 
