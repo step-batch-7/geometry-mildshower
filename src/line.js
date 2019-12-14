@@ -64,12 +64,8 @@ class Line {
     return dx * this.slope + this.start.y;
   }
 
-  hasPoint(givenPoint) {
-    if (!(givenPoint instanceof Point)) return false;
-    const { x, y } = givenPoint;
-    const isXInRange = isNumInRange([this.start.x, this.end.x], x);
-    const isYInRange = isNumInRange([this.start.y, this.end.y], y);
-    return isXInRange && isYInRange;
+  hasPoint(other) {
+    return other instanceof Point && other.x === this.findX(other.y);
   }
 
   split() {
