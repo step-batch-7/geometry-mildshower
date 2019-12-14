@@ -43,8 +43,7 @@ class Line {
   }
 
   isParallelTo(other) {
-    if (!(other instanceof Line)) return false;
-    return this.slope === other.slope;
+    return other instanceof Line && this.slope === other.slope;
   }
 
   findX(y) {
@@ -68,6 +67,13 @@ class Line {
     const isXInRange = isNumInRange([this.start.x, this.end.x], x);
     const isYInRange = isNumInRange([this.start.y, this.end.y], y);
     return isXInRange && isYInRange;
+  }
+
+  split() {
+    const midX = (this.start.x + this.end.x) / 2;
+    const midY = (this.start.y + this.end.y) / 2;
+    const midPoint = { x: midX, y: midY };
+    return [new Line(this.start, midPoint), new Line(midPoint, this.end)];
   }
 }
 

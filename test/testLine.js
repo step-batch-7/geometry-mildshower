@@ -204,4 +204,24 @@ describe("Line", () => {
       assert.notOk(line.hasPoint({ x: 3, y: 4 }));
     });
   });
+
+  describe("#split()", function() {
+    it("should give two lined splitted exactly at center of the line", function() {
+      const line = new Line({ x: 1, y: 2 }, { x: 5, y: 6 });
+      const actualValue = line.split();
+      const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const line2 = new Line({ x: 3, y: 4 }, { x: 5, y: 6 });
+      const expectedValue = [line1, line2];
+      assert.deepStrictEqual(actualValue, expectedValue);
+    });
+
+    it("should give lines of length 0 if the main line's length is 0", function() {
+      const line = new Line({ x: 1, y: 2 }, { x: 1, y: 2 });
+      const actualValue = line.split();
+      const line1 = new Line({ x: 1, y: 2 }, { x: 1, y: 2 });
+      const line2 = new Line({ x: 1, y: 2 }, { x: 1, y: 2 });
+      const expectedValue = [line1, line2];
+      assert.deepStrictEqual(actualValue, expectedValue);
+    });
+  });
 });
