@@ -34,4 +34,23 @@ describe("Point", () => {
       assert.deepStrictEqual(actualValue, expectedValue);
     });
   });
+
+  describe("#isEqualTo()", function() {
+    it("should validate if co-ordinates of both points are equal", function() {
+      const point1 = new Point(4, 7);
+      const point2 = new Point(4, 7);
+      assert.ok(point1.isEqualTo(point2));
+    });
+
+    it("should invalidate if co-ordinates of both points are not equal", function() {
+      const point1 = new Point(4, 7);
+      const point2 = new Point(1, 9);
+      assert.notOk(point1.isEqualTo(point2));
+    });
+
+    it("should invalidate passed object is not a point", function() {
+      const point1 = new Point(4, 7);
+      assert.notOk(point1.isEqualTo({ x: 4, y: 7 }));
+    });
+  });
 });
