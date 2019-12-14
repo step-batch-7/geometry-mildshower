@@ -1,5 +1,6 @@
 const assert = require("chai").assert;
 const Line = require("../src/line");
+const Point = require("../src/point");
 
 describe("Line", () => {
   describe("#isEqual()", () => {
@@ -182,6 +183,20 @@ describe("Line", () => {
       const actualValue = line.findY(1);
       const expectedValue = 5;
       assert.strictEqual(actualValue, expectedValue);
+    });
+  });
+
+  describe("#hasPoint()", function() {
+    it("should validate if a point is sent and the point is on the line", function() {
+      const line = new Line({ x: 1, y: 2 }, { x: 4, y: 5 });
+      const point = new Point(3, 4);
+      assert.ok(line.hasPoint(point));
+    });
+
+    it("should invalidate if a point is sent and the point is not on the line", function() {
+      const line = new Line({ x: 1, y: 2 }, { x: 4, y: 5 });
+      const point = new Point(10, 4);
+      assert.notOk(line.hasPoint(point));
     });
   });
 });
