@@ -165,8 +165,15 @@ describe("Line", () => {
       assert.isNaN(line.slope);
     });
 
-    it("should give 0 as slope when line is parallel to x-axis", function() {
+    it("should give 0 as slope when line is parallel to x-axis and direction is rightwards", function() {
       const line = new Line({ x: 1, y: 1 }, { x: 2, y: 1 });
+      const actualValue = line.slope;
+      const expectedValue = 0;
+      assert.strictEqual(actualValue, expectedValue);
+    });
+
+    it("should give 0 as slope when line is parallel to x-axis and direction is leftwards", function() {
+      const line = new Line({ x: 2, y: 1 }, { x: 1, y: 1 });
       const actualValue = line.slope;
       const expectedValue = 0;
       assert.strictEqual(actualValue, expectedValue);
@@ -205,7 +212,7 @@ describe("Line", () => {
       assert.isNaN(line.findX(10));
     });
 
-    it("should give any valid x value if there are multiple x values available for a given y", function() {
+    it("should give  x of start point if there are multiple x values available for a given y", function() {
       const line = new Line({ x: -1, y: 1 }, { x: 1, y: 1 });
       const actualValue = line.findX(1);
       const expectedValue = -1;
@@ -231,7 +238,7 @@ describe("Line", () => {
       assert.isNaN(line.findY(5));
     });
 
-    it("should give any valid y value if there are multiple y values available for a given x", function() {
+    it("should give y value of start point if there are multiple y values available for a given x", function() {
       const line = new Line({ x: 1, y: 5 }, { x: 1, y: -1 });
       const actualValue = line.findY(1);
       const expectedValue = 5;
@@ -240,15 +247,33 @@ describe("Line", () => {
   });
 
   describe("#hasPoint()", function() {
-    it("should validate if a point is sent and the point is on the line", function() {
+    it("should validate if the given point is on the line segment and the line is an inclined line", function() {
       const line = new Line({ x: 1, y: 2 }, { x: 4, y: 5 });
       const point = new Point(3, 4);
       assert.ok(line.hasPoint(point));
     });
 
-    it("should invalidate if a point is sent and the point is not on the line", function() {
+    it("should validate if the given point is on the line segment and the line is a horizontal line", function() {
+      const line = new Line({ x: -1, y: 2 }, { x: 4, y: 2 });
+      const point = new Point(0, 2);
+      assert.ok(line.hasPoint(point));
+    });
+
+    it("should validate if the given point is on the line segment and the line is a vertical line", function() {
+      const line = new Line({ x: -1, y: 2 }, { x: -1, y: 20 });
+      const point = new Point(-1, 7);
+      assert.ok(line.hasPoint(point));
+    });
+
+    it("should invalidate the given point is not on the line and not collinear to the end points of the line", function() {
       const line = new Line({ x: 1, y: 2 }, { x: 4, y: 5 });
       const point = new Point(10, 4);
+      assert.notOk(line.hasPoint(point));
+    });
+
+    it("should invalidate the given point is not on the line but collinear to the end points of the line", function() {
+      const line = new Line({ x: 1, y: 2 }, { x: 4, y: 5 });
+      const point = new Point(5, 6);
       assert.notOk(line.hasPoint(point));
     });
 
