@@ -53,8 +53,8 @@ class Line {
   isParallelTo(other) {
     if (!(other instanceof Line)) return false;
     const areSlopesSame = this.slope === other.slope;
-    const areLinesOverLapping = areCollinear(this.start, this.end, other.start);
-    return areSlopesSame && !areLinesOverLapping;
+    // const areLinesOverLapping = areCollinear(this.start, this.end, other.start);
+    return areSlopesSame && !areCollinear(this.start, this.end, other.start);
   }
 
   findX(y) {

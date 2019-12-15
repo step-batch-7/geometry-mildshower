@@ -3,7 +3,7 @@ const Line = require("../src/line");
 const Point = require("../src/point");
 
 describe("Line", () => {
-  describe("#isEqual()", () => {
+  describe("#isEqualTo()", () => {
     it("should validate if equal lines are given", () => {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const line2 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
