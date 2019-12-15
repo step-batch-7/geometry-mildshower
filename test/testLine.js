@@ -172,8 +172,15 @@ describe("Line", () => {
       assert.strictEqual(actualValue, expectedValue);
     });
 
-    it("should give Infinity as slope when line is parallel to y-axis", function() {
+    it("should give Infinity as slope when line is parallel to y-axis and direction is upwards", function() {
       const line = new Line({ x: 1, y: 2 }, { x: 1, y: 1 });
+      const actualValue = line.slope;
+      const expectedValue = Infinity;
+      assert.strictEqual(actualValue, expectedValue);
+    });
+
+    it("should give Infinity as slope when line is parallel to y-axis and direction is downwards", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 1, y: 2 });
       const actualValue = line.slope;
       const expectedValue = Infinity;
       assert.strictEqual(actualValue, expectedValue);
