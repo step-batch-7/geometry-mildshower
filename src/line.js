@@ -26,9 +26,12 @@ class Line {
 
   isEqualTo(other) {
     if (!(other instanceof Line)) return false;
-    const areStartsEqual = arePointsEqual(this.start, other.start);
-    const areEndsEqual = arePointsEqual(this.end, other.end);
-    return areStartsEqual && areEndsEqual;
+    return (
+      (arePointsEqual(this.start, other.start) &&
+        arePointsEqual(this.end, other.end)) ||
+      (arePointsEqual(this.start, other.end) &&
+        arePointsEqual(this.start, other.end))
+    );
   }
 
   toString() {

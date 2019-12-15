@@ -4,9 +4,15 @@ const Point = require("../src/point");
 
 describe("Line", () => {
   describe("#isEqualTo()", () => {
-    it("should validate if equal lines are given", () => {
+    it("should validate if equal lines are given with same start and end", () => {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const line2 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      assert.ok(line1.isEqualTo(line2));
+    });
+
+    it("should validate if equal lines are given with altered start and end", () => {
+      const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const line2 = new Line({ x: 3, y: 4 }, { x: 1, y: 2 });
       assert.ok(line1.isEqualTo(line2));
     });
 
