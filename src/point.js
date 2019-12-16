@@ -31,6 +31,10 @@ class Point {
     const dy = this.y - other.y;
     return Math.sqrt(dx ** 2 + dy ** 2);
   }
+
+  isOn(shape) {
+    return shape.hasPoint(this);
+  }
 }
 
 module.exports = Point;

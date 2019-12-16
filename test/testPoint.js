@@ -1,5 +1,6 @@
 const assert = require("chai").assert;
 const Point = require("../src/point");
+const Line = require("../src/line");
 
 describe("Point", () => {
   describe("#toString()", function() {
@@ -82,6 +83,20 @@ describe("Point", () => {
       const actualValue = point1.findDistanceTo(point2);
       const expectedValue = 10.1;
       assert.deepStrictEqual(actualValue, expectedValue);
+    });
+  });
+
+  describe("#isOn()", function() {
+    it("should validate if a line is given and the point is on the line", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 10, y: 10 });
+      const point = new Point(5, 5);
+      assert.ok(point.isOn(line));
+    });
+
+    it("should invalidate if a line is given but the point is not on the line", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 10, y: 10 });
+      const point = new Point(5, 6);
+      assert.notOk(point.isOn(line));
     });
   });
 });
