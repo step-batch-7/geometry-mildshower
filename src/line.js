@@ -11,7 +11,7 @@ const isNumInRange = function(range, number) {
   return lowerLim <= number && higherLim >= number;
 };
 
-const areCollinear = function(pointA, pointB, pointC) {
+const arePointsCollinear = function(pointA, pointB, pointC) {
   const [x1, y1] = [pointA.x, pointA.y];
   const [x2, y2] = [pointB.x, pointB.y];
   const [x3, y3] = [pointC.x, pointC.y];
@@ -56,7 +56,9 @@ class Line {
   isParallelTo(other) {
     if (!(other instanceof Line)) return false;
     const areSlopesSame = this.slope === other.slope;
-    return areSlopesSame && !areCollinear(this.start, this.end, other.start);
+    return (
+      areSlopesSame && !arePointsCollinear(this.start, this.end, other.start)
+    );
   }
 
   findX(y) {
