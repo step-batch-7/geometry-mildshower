@@ -30,7 +30,7 @@ class Line {
       (arePointsEqual(this.start, other.start) &&
         arePointsEqual(this.end, other.end)) ||
       (arePointsEqual(this.start, other.end) &&
-        arePointsEqual(this.start, other.end))
+        arePointsEqual(this.end, other.start))
     );
   }
 
