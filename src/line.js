@@ -88,11 +88,7 @@ class Line {
   }
 
   findPointFromEnd(distance) {
-    if (distance < 0 || distance > this.length) return null;
-    const distanceRatio = distance / this.length;
-    const x = (1 - distanceRatio) * this.end.x + distanceRatio * this.start.x;
-    const y = (1 - distanceRatio) * this.end.y + distanceRatio * this.start.y;
-    return new Point(x, y);
+    return this.findPointFromStart(this.length - distance);
   }
 }
 
