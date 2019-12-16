@@ -1,3 +1,5 @@
+const Point = require("./point");
+
 const arePointsEqual = function(point1, point2) {
   const areXsEqual = point1.x === point2.x;
   const areYsEqual = point1.y === point2.y;
@@ -6,7 +8,7 @@ const arePointsEqual = function(point1, point2) {
 
 class Circle {
   constructor(center, radius) {
-    this.center = { x: center.x, y: center.y };
+    this.center = new Point(center.x, center.y);
     this.radius = radius;
   }
 
@@ -25,6 +27,10 @@ class Circle {
 
   get area() {
     return Math.PI * this.radius ** 2;
+  }
+
+  get perimeter() {
+    return 2 * Math.PI * this.radius;
   }
 }
 

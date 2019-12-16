@@ -51,4 +51,20 @@ describe("Circle", () => {
       assert.deepStrictEqual(actualValue, expectedValue);
     });
   });
+
+  describe("#perimeter", function() {
+    it("should calculate the perimeter of a circle if the circle's perimeter is more than 0", function() {
+      const circle = new Circle({ x: 1, y: 2 }, 3);
+      const actualValue = circle.perimeter;
+      const expectedValue = 18.84;
+      assert.approximately(actualValue, expectedValue, 0.01);
+    });
+
+    it("should 0 as perimeter if the circle's perimeter is 0", function() {
+      const circle = new Circle({ x: 1, y: 2 }, 0);
+      const actualValue = circle.perimeter;
+      const expectedValue = 0;
+      assert.deepStrictEqual(actualValue, expectedValue);
+    });
+  });
 });
