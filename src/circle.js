@@ -1,10 +1,4 @@
-const Point = require("./point");
-
-const arePointsEqual = function(point1, point2) {
-  const areXsEqual = point1.x === point2.x;
-  const areYsEqual = point1.y === point2.y;
-  return areXsEqual && areYsEqual;
-};
+const { Point, arePointsEqual } = require("./point");
 
 class Circle {
   constructor(center, radius) {
@@ -34,4 +28,4 @@ class Circle {
   }
 }
 
-module.exports = Circle;
+module.exports = { Circle };
