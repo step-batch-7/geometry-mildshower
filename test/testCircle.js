@@ -39,9 +39,9 @@ describe("Circle", () => {
   describe("#area", function() {
     it("should calculate the area of a circle if the circle's area is more than 0", function() {
       const circle = new Circle({ x: 1, y: 2 }, 3);
-      const actualValue = circle.area;
-      const expectedValue = 28.27;
-      assert.approximately(actualValue, expectedValue, 0.01);
+      const actualValue = Math.round(circle.area);
+      const expectedValue = 28;
+      assert.deepStrictEqual(actualValue, expectedValue);
     });
 
     it("should give 0 as area if the circle's radius is 0", function() {
@@ -55,9 +55,9 @@ describe("Circle", () => {
   describe("#perimeter", function() {
     it("should calculate the perimeter of a circle if the circle's perimeter is more than 0", function() {
       const circle = new Circle({ x: 1, y: 2 }, 3);
-      const actualValue = circle.perimeter;
-      const expectedValue = 18.84;
-      assert.approximately(actualValue, expectedValue, 0.01);
+      const actualValue = Math.round(circle.perimeter);
+      const expectedValue = 19;
+      assert.strictEqual(actualValue, expectedValue);
     });
 
     it("should 0 as perimeter if the circle's perimeter is 0", function() {
