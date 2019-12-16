@@ -35,4 +35,20 @@ describe("Circle", () => {
       assert.notOk(circle.isEqualTo({ center: { x: 1, y: 2 }, radius: 3 }));
     });
   });
+
+  describe("#area", function() {
+    it("should calculate the area of a circle if the circle's area is more than 0", function() {
+      const circle = new Circle({ x: 1, y: 2 }, 3);
+      const actualValue = circle.area;
+      const expectedValue = 28.27;
+      assert.approximately(actualValue, expectedValue, 0.01);
+    });
+
+    it("should 0 as area if the circle's area is 0", function() {
+      const circle = new Circle({ x: 1, y: 2 }, 0);
+      const actualValue = circle.area;
+      const expectedValue = 0;
+      assert.deepStrictEqual(actualValue, expectedValue);
+    });
+  });
 });
