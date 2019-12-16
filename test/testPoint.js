@@ -98,5 +98,13 @@ describe("Point", () => {
       const point = new Point(5, 6);
       assert.notOk(point.isOn(line));
     });
+
+    it("should throw an error if a object is given that does not have hasPoint() method", function() {
+      const point = new Point(5, 6);
+      const otherObj = { start: { x: 0, y: 0 }, end: { x: 1, y: 1 } };
+      assert.throws(() => {
+        point.isOn(otherObj);
+      });
+    });
   });
 });
