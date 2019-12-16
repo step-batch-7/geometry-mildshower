@@ -330,4 +330,37 @@ describe("Line", () => {
       assert.deepStrictEqual(actualValue, expectedValue);
     });
   });
+
+  describe("#findPointFromStart()", function() {
+    it("should give a point on line if the given distance is positive and less than the length of the line", function() {
+      const line = new Line({ x: 0, y: 1 }, { x: 0, y: 11 });
+      const actualValue = line.findPointFromStart(5);
+      const expectedValue = new Point(0, 6);
+      assert.deepStrictEqual(actualValue, expectedValue);
+    });
+
+    it("should give start Point if given distance is 0", function() {
+      const line = new Line({ x: 0, y: 1 }, { x: 0, y: 11 });
+      const actualValue = line.findPointFromStart(0);
+      const expectedValue = new Point(0, 1);
+      assert.deepStrictEqual(actualValue, expectedValue);
+    });
+
+    it("should give end Point if given distance is equal to length", function() {
+      const line = new Line({ x: 0, y: 1 }, { x: 0, y: 11 });
+      const actualValue = line.findPointFromStart(10);
+      const expectedValue = new Point(0, 11);
+      assert.deepStrictEqual(actualValue, expectedValue);
+    });
+
+    it("should give NaN if given distance is greater than length", function() {
+      const line = new Line({ x: 0, y: 1 }, { x: 0, y: 11 });
+      assert.isNaN(line.findPointFromStart(16));
+    });
+
+    it("should give NaN if given distance is negative", function() {
+      const line = new Line({ x: 0, y: 1 }, { x: 0, y: 11 });
+      assert.isNaN(line.findPointFromStart(-16));
+    });
+  });
 });

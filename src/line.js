@@ -86,6 +86,14 @@ class Line {
     const midPoint = { x: midX, y: midY };
     return [new Line(this.start, midPoint), new Line(midPoint, this.end)];
   }
+
+  findPointFromStart(distance) {
+    if (distance < 0 || distance > this.length) return NaN;
+    const distanceRatio = distance / this.length;
+    const x = (1 - distanceRatio) * this.start.x + distanceRatio * this.end.x;
+    const y = (1 - distanceRatio) * this.start.y + distanceRatio * this.end.y;
+    return new Point(x, y);
+  }
 }
 
 module.exports = Line;
