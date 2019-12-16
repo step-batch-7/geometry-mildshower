@@ -1,5 +1,6 @@
 const assert = require("chai").assert;
 const Circle = require("../src/circle");
+const Point = require("../src/point");
 
 describe("Circle", () => {
   describe("#toString()", function() {
@@ -65,6 +66,25 @@ describe("Circle", () => {
       const actualValue = circle.perimeter;
       const expectedValue = 0;
       assert.deepStrictEqual(actualValue, expectedValue);
+    });
+  });
+
+  describe("#hasPoint()", function() {
+    it("should validate if the given point is on the circle", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const point = new Point(3, 4);
+      assert.ok(circle.hasPoint(point));
+    });
+
+    it("should invalidate if the given point is not on the circle", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const point = new Point(4, 4);
+      assert.notOk(circle.hasPoint(point));
+    });
+
+    it("should invalidate if the given obj is not a point", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      assert.notOk(circle.hasPoint({ x: 3, y: 4 }));
     });
   });
 });
