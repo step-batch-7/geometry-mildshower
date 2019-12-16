@@ -16,6 +16,18 @@ describe("Line", () => {
       assert.ok(line1.isEqualTo(line2));
     });
 
+    it("should invalidate if start1 matches with end2 but end1 does not matches with start2", () => {
+      const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const line2 = new Line({ x: 3, y: 5 }, { x: 1, y: 2 });
+      assert.notOk(line1.isEqualTo(line2));
+    });
+
+    it("should invalidate if end1 matches with start2 but start1 does not matches with end2", () => {
+      const line1 = new Line({ x: 1, y: 56 }, { x: 3, y: 4 });
+      const line2 = new Line({ x: 3, y: 4 }, { x: 1, y: 2 });
+      assert.notOk(line1.isEqualTo(line2));
+    });
+
     it("should invalidate if lines of unequal start points are given", () => {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const line2 = new Line({ x: 5, y: 6 }, { x: 3, y: 4 });
