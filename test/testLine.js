@@ -236,6 +236,11 @@ describe("Line", () => {
       const expectedValue = -1;
       assert.strictEqual(actualValue, expectedValue);
     });
+
+    it("should give NaN if slope is 0 and given y is not on the line", function() {
+      const line = new Line({ x: -1, y: 2 }, { x: 1, y: 2 });
+      assert.isNaN(line.findX(1));
+    });
   });
 
   describe("#findY()", function() {
@@ -261,6 +266,11 @@ describe("Line", () => {
       const actualValue = line.findY(1);
       const expectedValue = 5;
       assert.strictEqual(actualValue, expectedValue);
+    });
+
+    it("should give NaN if slope is Infinity and given x is not on the line", function() {
+      const line = new Line({ x: 1, y: -3 }, { x: 1, y: 2 });
+      assert.isNaN(line.findX(3));
     });
   });
 
