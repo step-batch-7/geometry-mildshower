@@ -37,4 +37,4 @@ class Point {
   }
 }
 
-module.exports = { Point, arePointsEqual };
+module.exports = Point;

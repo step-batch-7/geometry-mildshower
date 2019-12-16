@@ -1,6 +1,6 @@
 const assert = require("chai").assert;
-const { Line } = require("../src/line");
-const { Point } = require("../src/point");
+const Line = require("../src/line");
+const Point = require("../src/point");
 
 describe("Line", () => {
   describe("#isEqualTo()", () => {
@@ -353,14 +353,14 @@ describe("Line", () => {
       assert.deepStrictEqual(actualValue, expectedValue);
     });
 
-    it("should give NaN if given distance is greater than length", function() {
+    it("should give null if given distance is greater than length", function() {
       const line = new Line({ x: 0, y: 1 }, { x: 0, y: 11 });
-      assert.isNaN(line.findPointFromStart(16));
+      assert.isNull(line.findPointFromStart(16));
     });
 
-    it("should give NaN if given distance is negative", function() {
+    it("should give null if given distance is negative", function() {
       const line = new Line({ x: 0, y: 1 }, { x: 0, y: 11 });
-      assert.isNaN(line.findPointFromStart(-16));
+      assert.isNull(line.findPointFromStart(-16));
     });
   });
 
@@ -386,14 +386,14 @@ describe("Line", () => {
       assert.deepStrictEqual(actualValue, expectedValue);
     });
 
-    it("should give NaN if given distance is greater than length", function() {
+    it("should give null if given distance is greater than length", function() {
       const line = new Line({ x: 0, y: 1 }, { x: 0, y: 11 });
-      assert.isNaN(line.findPointFromEnd(16));
+      assert.isNull(line.findPointFromEnd(16));
     });
 
-    it("should give NaN if given distance is negative", function() {
+    it("should give null if given distance is negative", function() {
       const line = new Line({ x: 0, y: 1 }, { x: 0, y: 11 });
-      assert.isNaN(line.findPointFromEnd(-16));
+      assert.isNull(line.findPointFromEnd(-16));
     });
   });
 });

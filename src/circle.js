@@ -1,4 +1,4 @@
-const { Point, arePointsEqual } = require("./point");
+const Point = require("./point");
 
 class Circle {
   constructor(center, radius) {
@@ -15,7 +15,7 @@ class Circle {
     return (
       other instanceof Circle &&
       this.radius === other.radius &&
-      arePointsEqual(this.center, other.center)
+      this.center.isEqualTo(other.center)
     );
   }
 
@@ -28,4 +28,4 @@ class Circle {
   }
 }
 
-module.exports = { Circle };
+module.exports = Circle;

@@ -1,4 +1,4 @@
-const { Point } = require("./point");
+const Point = require("./point");
 
 const isNumInRange = function(range, number) {
   const [lowerLim, higherLim] = range.sort((num1, num2) => num1 - num2);
@@ -80,7 +80,7 @@ class Line {
   }
 
   findPointFromStart(distance) {
-    if (distance < 0 || distance > this.length) return NaN;
+    if (distance < 0 || distance > this.length) return null;
     const distanceRatio = distance / this.length;
     const x = (1 - distanceRatio) * this.start.x + distanceRatio * this.end.x;
     const y = (1 - distanceRatio) * this.start.y + distanceRatio * this.end.y;
@@ -88,7 +88,7 @@ class Line {
   }
 
   findPointFromEnd(distance) {
-    if (distance < 0 || distance > this.length) return NaN;
+    if (distance < 0 || distance > this.length) return null;
     const distanceRatio = distance / this.length;
     const x = (1 - distanceRatio) * this.end.x + distanceRatio * this.start.x;
     const y = (1 - distanceRatio) * this.end.y + distanceRatio * this.start.y;
@@ -96,4 +96,4 @@ class Line {
   }
 }
 
-module.exports = { Line };
+module.exports = Line;
