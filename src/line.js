@@ -1,4 +1,4 @@
-const { Point, arePointsEqual } = require("./point");
+const { Point } = require("./point");
 
 const isNumInRange = function(range, number) {
   const [lowerLim, higherLim] = range.sort((num1, num2) => num1 - num2);
@@ -21,10 +21,8 @@ class Line {
   isEqualTo(other) {
     if (!(other instanceof Line)) return false;
     return (
-      (arePointsEqual(this.start, other.start) &&
-        arePointsEqual(this.end, other.end)) ||
-      (arePointsEqual(this.start, other.end) &&
-        arePointsEqual(this.end, other.start))
+      (this.start.isEqualTo(other.start) && this.end.isEqualTo(other.end)) ||
+      (this.start.isEqualTo(other.end) && this.end.isEqualTo(other.start))
     );
   }
 

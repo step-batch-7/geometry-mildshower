@@ -44,7 +44,7 @@ describe("Circle", () => {
       assert.approximately(actualValue, expectedValue, 0.01);
     });
 
-    it("should 0 as area if the circle's area is 0", function() {
+    it("should give 0 as area if the circle's radius is 0", function() {
       const circle = new Circle({ x: 1, y: 2 }, 0);
       const actualValue = circle.area;
       const expectedValue = 0;
