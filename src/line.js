@@ -88,6 +88,14 @@ class Line {
     const y = (1 - distanceRatio) * this.start.y + distanceRatio * this.end.y;
     return new Point(x, y);
   }
+
+  findPointFromEnd(distance) {
+    if (distance < 0 || distance > this.length) return NaN;
+    const distanceRatio = distance / this.length;
+    const x = (1 - distanceRatio) * this.end.x + distanceRatio * this.start.x;
+    const y = (1 - distanceRatio) * this.end.y + distanceRatio * this.start.y;
+    return new Point(x, y);
+  }
 }
 
 module.exports = { Line };
