@@ -53,4 +53,35 @@ describe("Point", () => {
       assert.notOk(point1.isEqualTo({ x: 4, y: 7 }));
     });
   });
+
+  describe("#findDistanceTo()", function() {
+    it("should give distance between the two points when distance is more than 0", function() {
+      const point1 = new Point(1, 1);
+      const point2 = new Point(4, 5);
+      const actualValue = point1.findDistanceTo(point2);
+      const expectedValue = 5;
+      assert.deepStrictEqual(actualValue, expectedValue);
+    });
+
+    it("should give distance between the two points when distance is 0", function() {
+      const point1 = new Point(1, 1);
+      const point2 = new Point(1, 1);
+      const actualValue = point1.findDistanceTo(point2);
+      const expectedValue = 0;
+      assert.deepStrictEqual(actualValue, expectedValue);
+    });
+
+    it("should give NaN if the given point is not a point instance", function() {
+      const point = new Point(1, 1);
+      assert.isNaN(point.findDistanceTo({ x: 2, y: 6 }));
+    });
+
+    it("should give decimal number as distance also", function() {
+      const point1 = new Point(1, 2);
+      const point2 = new Point(3, 11.9);
+      const actualValue = point1.findDistanceTo(point2);
+      const expectedValue = 10.1;
+      assert.deepStrictEqual(actualValue, expectedValue);
+    });
+  });
 });

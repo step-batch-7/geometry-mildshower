@@ -24,6 +24,13 @@ class Point {
   isEqualTo(other) {
     return other instanceof Point && arePointsEqual(this, other);
   }
+
+  findDistanceTo(other) {
+    if (!(other instanceof Point)) return NaN;
+    const dx = this.x - other.x;
+    const dy = this.y - other.y;
+    return Math.sqrt(dx ** 2 + dy ** 2);
+  }
 }
 
 module.exports = Point;
