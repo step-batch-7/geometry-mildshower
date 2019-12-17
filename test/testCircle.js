@@ -98,4 +98,20 @@ describe("Circle", () => {
       assert.notOk(circle.hasPoint({ x: 3, y: 4 }));
     });
   });
+
+  describe("#moveTo()", function() {
+    it("should create a circle at the given point having same dimensions", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const actualValue = circle.moveTo({ x: 1, y: 1 });
+      const expectedValue = new Circle({ x: 1, y: 1 }, 5);
+      assert.deepStrictEqual(actualValue, expectedValue);
+    });
+
+    it("should give the same circle back if the coordinates of center of the same circle is given", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const actualValue = circle.moveTo({ x: 0, y: 0 });
+      const expectedValue = circle;
+      assert.deepStrictEqual(actualValue, expectedValue);
+    });
+  });
 });
