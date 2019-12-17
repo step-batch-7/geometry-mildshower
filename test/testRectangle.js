@@ -30,6 +30,11 @@ describe("Rectangle", () => {
       assert.deepStrictEqual(rectangle.area, 12);
     });
 
+    it("should calculate the area of a rectangle when the rectangle is a square(all edges same)", function() {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 5 });
+      assert.deepStrictEqual(rectangle.area, 16);
+    });
+
     it("should give 0 as area if the given diagonal is a horizontal line", function() {
       const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 4, y: 1 });
       assert.deepStrictEqual(rectangle.area, 0);
@@ -43,6 +48,23 @@ describe("Rectangle", () => {
     it("should give 0 as area if the given two points to create the rectangle are same", function() {
       const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 1, y: 1 });
       assert.deepStrictEqual(rectangle.area, 0);
+    });
+  });
+
+  describe("#perimeter", function() {
+    it("should calculate the perimeter of a rectangle when the perimeter is positive", function() {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 4, y: 5 });
+      assert.deepStrictEqual(rectangle.perimeter, 14);
+    });
+
+    it("should calculate the perimeter of a rectangle when the rectangle is a square(all edges same)", function() {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 5 });
+      assert.deepStrictEqual(rectangle.perimeter, 16);
+    });
+
+    it("should give 0 as perimeter if the given two points to create the rectangle are same", function() {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 1, y: 1 });
+      assert.deepStrictEqual(rectangle.perimeter, 0);
     });
   });
 });
