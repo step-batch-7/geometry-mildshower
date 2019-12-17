@@ -7,6 +7,10 @@ const arePointsEqual = function(point1, point2) {
 class Point {
   constructor(x, y) {
     [this.x, this.y] = [x, y];
+    Object.defineProperties(this, {
+      x: { writable: false },
+      y: { writable: false }
+    });
   }
 
   toString() {

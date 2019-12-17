@@ -4,6 +4,17 @@ const Line = require("../src/line");
 const Circle = require("../src/circle");
 
 describe("Point", () => {
+  describe("#notEditable", function() {
+    it("co-ordinates of the point should not be editable", function() {
+      const point = new Point(4, 5);
+      point.x = 45;
+      point.y = 454;
+      const actualValue = point;
+      const expectedValue = new Point(4, 5);
+      assert.deepStrictEqual(actualValue, expectedValue);
+    });
+  });
+
   describe("#toString()", function() {
     it("should give a text representation of the line", function() {
       const point = new Point(4, 8);
