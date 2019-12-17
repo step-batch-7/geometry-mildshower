@@ -23,4 +23,26 @@ describe("Rectangle", () => {
       assert.deepStrictEqual(actualValue, expectedValue);
     });
   });
+
+  describe("#area", function() {
+    it("should calculate area when the area is a positive value", function() {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 4, y: 5 });
+      assert.deepStrictEqual(rectangle.area, 12);
+    });
+
+    it("should give 0 as area if the given diagonal is a horizontal line", function() {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 4, y: 1 });
+      assert.deepStrictEqual(rectangle.area, 0);
+    });
+
+    it("should give 0 as area if the given diagonal is a vertical line", function() {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 1, y: 4 });
+      assert.deepStrictEqual(rectangle.area, 0);
+    });
+
+    it("should give 0 as area if the given two points to create the rectangle are same", function() {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 1, y: 1 });
+      assert.deepStrictEqual(rectangle.area, 0);
+    });
+  });
 });

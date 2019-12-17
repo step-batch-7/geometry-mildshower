@@ -19,6 +19,12 @@ class Rectangle {
     const pointC = `(${this.vertexC.x},${this.vertexC.y})`;
     return `[Rectangle ${pointA} to ${pointC}]`;
   }
+
+  get area() {
+    const edge1 = this.vertexC.findDistanceTo(this.vertexB);
+    const edge2 = this.vertexC.findDistanceTo(this.vertexD);
+    return edge1 * edge2;
+  }
 }
 
 module.exports = Rectangle;
