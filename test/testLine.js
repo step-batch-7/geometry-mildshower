@@ -3,6 +3,17 @@ const Line = require("../src/line");
 const Point = require("../src/point");
 
 describe("Line", () => {
+  describe("#notEditable", function() {
+    it("end points of the line should not be editable", function() {
+      const line = new Line({ x: 4, y: 5 }, { x: 7, y: 8 });
+      line.start = new Point(2, 3);
+      line.end = new Point(2, 3);
+      const actualValue = line;
+      const expectedValue = new Line({ x: 4, y: 5 }, { x: 7, y: 8 });
+      assert.deepStrictEqual(actualValue, expectedValue);
+    });
+  });
+
   describe("#isEqualTo()", () => {
     it("should validate if equal lines are given with same start and end", () => {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
