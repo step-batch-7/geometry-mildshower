@@ -8,9 +8,8 @@ describe("Line", () => {
       const line = new Line({ x: 4, y: 5 }, { x: 7, y: 8 });
       line.start = new Point(2, 3);
       line.end = new Point(2, 3);
-      const actualValue = line;
       const expectedValue = new Line({ x: 4, y: 5 }, { x: 7, y: 8 });
-      assert.deepStrictEqual(actualValue, expectedValue);
+      assert.deepStrictEqual(line, expectedValue);
     });
   });
 

@@ -9,9 +9,8 @@ describe("Point", () => {
       const point = new Point(4, 5);
       point.x = 45;
       point.y = 454;
-      const actualValue = point;
       const expectedValue = new Point(4, 5);
-      assert.deepStrictEqual(actualValue, expectedValue);
+      assert.deepStrictEqual(point, expectedValue);
     });
   });
 
