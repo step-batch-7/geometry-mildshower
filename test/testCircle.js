@@ -3,6 +3,17 @@ const Circle = require("../src/circle");
 const Point = require("../src/point");
 
 describe("Circle", () => {
+  describe("#notEditable", function() {
+    it("co-ordinates of the circle should not be editable", function() {
+      const circle = new Circle({ x: 4, y: 5 }, 5);
+      circle.center = new Point(2, 3);
+      circle.radius = 56;
+      const actualValue = circle;
+      const expectedValue = new Circle({ x: 4, y: 5 }, 5);
+      assert.deepStrictEqual(actualValue, expectedValue);
+    });
+  });
+
   describe("#toString()", function() {
     it("should give string representation of the circle", function() {
       const circle = new Circle({ x: 1, y: 2 }, 3);
