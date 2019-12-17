@@ -10,7 +10,7 @@ const getVertexBandD = function(vertexA, vertexC) {
 
 const get2adjacentEdges = function(vertexA, vertexC) {
   const { vertexB } = getVertexBandD(vertexA, vertexC);
-  return [vertexB.findDistanceTo(vertexA), vertexB.findDistanceTo(vertexC)];
+  return [new Line(vertexB, vertexA), new Line(vertexB, vertexC)];
 };
 
 class Rectangle {
@@ -31,12 +31,12 @@ class Rectangle {
 
   get area() {
     const [edge1, edge2] = get2adjacentEdges(this.vertexA, this.vertexC);
-    return edge1 * edge2;
+    return edge1.length * edge2.length;
   }
 
   get perimeter() {
     const [edge1, edge2] = get2adjacentEdges(this.vertexA, this.vertexC);
-    return 2 * (edge1 + edge2);
+    return 2 * (edge1.length + edge2.length);
   }
 
   isEqualTo(other) {
@@ -48,6 +48,17 @@ class Rectangle {
     return (
       diagonal1.isEqualTo(diagonalToCheck) ||
       diagonal2.isEqualTo(diagonalToCheck)
+    );
+  }
+
+  hasPoint(other) {
+    const [edge1, edge2] = get2adjacentEdges(this.vertexA, this.vertexC);
+    const [edge3, edge4] = get2adjacentEdges(this.vertexC, this.vertexA);
+    return (
+      edge1.hasPoint(other) ||
+      edge2.hasPoint(other) ||
+      edge3.hasPoint(other) ||
+      edge4.hasPoint(other)
     );
   }
 }

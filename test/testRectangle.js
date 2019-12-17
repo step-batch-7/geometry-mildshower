@@ -101,4 +101,53 @@ describe("Rectangle", () => {
       );
     });
   });
+
+  describe("#hasPoint()", function() {
+    it("should validate if the given point is on any of the vertices", function() {
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 4, y: 5 });
+      const point = new Point(0, 0);
+      assert.ok(rectangle.hasPoint(point));
+    });
+
+    it("should validate if the given point is on the upper length", function() {
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 4, y: 5 });
+      const point = new Point(2, 5);
+      assert.ok(rectangle.hasPoint(point));
+    });
+
+    it("should validate if the given point is on the lower length", function() {
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 4, y: 5 });
+      const point = new Point(2, 0);
+      assert.ok(rectangle.hasPoint(point));
+    });
+
+    it("should validate if the given point is on the left width", function() {
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 4, y: 5 });
+      const point = new Point(0, 3);
+      assert.ok(rectangle.hasPoint(point));
+    });
+
+    it("should validate if the given point is on the right width", function() {
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 4, y: 5 });
+      const point = new Point(4, 3);
+      assert.ok(rectangle.hasPoint(point));
+    });
+
+    it("should invalidate if the given point is inside the rectangle but not on the rectangle", function() {
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 4, y: 5 });
+      const point = new Point(3, 3);
+      assert.notOk(rectangle.hasPoint(point));
+    });
+
+    it("should invalidate if the given point is outside the rectangle", function() {
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 4, y: 5 });
+      const point = new Point(10, 3);
+      assert.notOk(rectangle.hasPoint(point));
+    });
+
+    it("should invalidate if the given object is not a point", function() {
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 4, y: 5 });
+      assert.notOk(rectangle.hasPoint({ x: 0, y: 0 }));
+    });
+  });
 });
