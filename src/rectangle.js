@@ -1,16 +1,28 @@
 const Point = require("./point");
+const Line = require("./line");
+
+const getVertexBandD = function(vertexA, vertexC) {
+  return {
+    vertexB: new Point(vertexA.x, vertexC.y),
+    vertexD: new Point(vertexC.x, vertexA.y)
+  };
+};
+
+const get2adjacentEdges = function(vertexA, vertexC) {
+  const { vertexB } = getVertexBandD(vertexA, vertexC);
+  return {
+    edge1: vertexB.findDistanceTo(vertexA),
+    edge2: vertexB.findDistanceTo(vertexC)
+  };
+};
 
 class Rectangle {
   constructor(pointA, pointC) {
     this.vertexA = new Point(pointA.x, pointA.y);
-    this.vertexB = new Point(pointA.x, pointC.y);
     this.vertexC = new Point(pointC.x, pointC.y);
-    this.vertexD = new Point(pointC.x, pointA.y);
     Object.defineProperties(this, {
       vertexA: { writable: false },
-      vertexB: { writable: false },
-      vertexC: { writable: false },
-      vertexD: { writable: false }
+      vertexC: { writable: false }
     });
   }
 
@@ -21,15 +33,25 @@ class Rectangle {
   }
 
   get area() {
-    const edge1 = this.vertexC.findDistanceTo(this.vertexB);
-    const edge2 = this.vertexC.findDistanceTo(this.vertexD);
+    const { edge1, edge2 } = get2adjacentEdges(this.vertexA, this.vertexC);
     return edge1 * edge2;
   }
 
   get perimeter() {
-    const edge1 = this.vertexC.findDistanceTo(this.vertexB);
-    const edge2 = this.vertexC.findDistanceTo(this.vertexD);
+    const { edge1, edge2 } = get2adjacentEdges(this.vertexA, this.vertexC);
     return 2 * (edge1 + edge2);
+  }
+
+  isEqualTo(other) {
+    if (!(other instanceof Rectangle)) return false;
+    const { vertexB, vertexD } = getVertexBandD(this.vertexA, this.vertexC);
+    const diagonal1 = new Line(this.vertexA, this.vertexC);
+    const diagonal2 = new Line(vertexB, vertexD);
+    const diagonalToCheck = new Line(other.vertexA, other.vertexC);
+    return (
+      diagonal1.isEqualTo(diagonalToCheck) ||
+      diagonal2.isEqualTo(diagonalToCheck)
+    );
   }
 }
 

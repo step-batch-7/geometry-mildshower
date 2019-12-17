@@ -7,9 +7,7 @@ describe("Rectangle", () => {
     it("vertices of the rectangle should not be editable", function() {
       const rectangle = new Rectangle({ x: 4, y: 5 }, { x: 8, y: 9 });
       rectangle.vertexA = new Point(2, 3);
-      rectangle.vertexB = new Point(2, 3);
       rectangle.vertexC = new Point(2, 3);
-      rectangle.vertexD = new Point(2, 3);
       const expectedValue = new Rectangle({ x: 4, y: 5 }, { x: 8, y: 9 });
       assert.deepStrictEqual(rectangle, expectedValue);
     });
@@ -65,6 +63,42 @@ describe("Rectangle", () => {
     it("should give 0 as perimeter if the given two points to create the rectangle are same", function() {
       const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 1, y: 1 });
       assert.deepStrictEqual(rectangle.perimeter, 0);
+    });
+  });
+
+  describe("#isEqualTo()", function() {
+    it("should validate if two rectangles are same and initial diagonals are same", function() {
+      const rectangle1 = new Rectangle({ x: 1, y: 1 }, { x: 4, y: 5 });
+      const rectangle2 = new Rectangle({ x: 1, y: 1 }, { x: 4, y: 5 });
+      assert.ok(rectangle1.isEqualTo(rectangle2));
+    });
+
+    it("should validate if two rectangles are same and initial diagonals are same but of opposite direction", function() {
+      const rectangle1 = new Rectangle({ x: 1, y: 1 }, { x: 4, y: 5 });
+      const rectangle2 = new Rectangle({ x: 4, y: 5 }, { x: 1, y: 1 });
+      assert.ok(rectangle1.isEqualTo(rectangle2));
+    });
+
+    it("should validate if two rectangles are same but initial diagonals are different", function() {
+      const rectangle1 = new Rectangle({ x: 1, y: 1 }, { x: 4, y: 5 });
+      const rectangle2 = new Rectangle({ x: 1, y: 5 }, { x: 4, y: 1 });
+      assert.ok(rectangle1.isEqualTo(rectangle2));
+    });
+
+    it("should invalidate if two rectangles are not same", function() {
+      const rectangle1 = new Rectangle({ x: 1, y: 1 }, { x: 4, y: 5 });
+      const rectangle2 = new Rectangle({ x: 0, y: 5 }, { x: 4, y: 1 });
+      assert.notOk(rectangle1.isEqualTo(rectangle2));
+    });
+
+    it("should invalidate if given object is not a rectangle", function() {
+      const rectangle1 = new Rectangle({ x: 1, y: 1 }, { x: 4, y: 5 });
+      assert.notOk(
+        rectangle1.isEqualTo({
+          vertexA: new Point(1, 1),
+          vertexC: new Point(4, 5)
+        })
+      );
     });
   });
 });
