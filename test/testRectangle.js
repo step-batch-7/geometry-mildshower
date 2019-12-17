@@ -151,7 +151,7 @@ describe("Rectangle", () => {
     });
   });
 
-  describe.only("#covers()", function() {
+  describe("#covers()", function() {
     it("should validate if the given point is inside the rectangle", function() {
       const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 4, y: 5 });
       const point = new Point(3, 3);
