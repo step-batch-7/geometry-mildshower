@@ -1,9 +1,9 @@
 const Point = require("./point");
 const Line = require("./line");
 
-const isNumInRange = function(range, number) {
+const isNumInRangeExcluding = function(range, number) {
   const [lowerLim, higherLim] = range.sort((num1, num2) => num1 - num2);
-  return lowerLim <= number && higherLim >= number;
+  return lowerLim < number && higherLim > number;
 };
 
 const getVertexBandD = function(vertexA, vertexC) {
@@ -70,8 +70,8 @@ class Rectangle {
   covers(other) {
     return (
       other instanceof Point &&
-      isNumInRange([this.vertexA.x, this.vertexC.x], other.x) &&
-      isNumInRange([this.vertexA.y, this.vertexC.y], other.y)
+      isNumInRangeExcluding([this.vertexA.x, this.vertexC.x], other.x) &&
+      isNumInRangeExcluding([this.vertexA.y, this.vertexC.y], other.y)
     );
   }
 }
